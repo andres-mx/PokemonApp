@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Pokemon"
 include ':app'
+include ':profile_module'
+include ':profile_module_api'
