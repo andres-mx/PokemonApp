@@ -43,6 +43,12 @@ class LoginFragment : Fragment() {
                 viewModel.userIntent.send(LoginIntent.IsValidEmail(text.toString()))
             }
         }
+
+        passwordText.doOnTextChanged { text, _, _, _ ->
+            lifecycleScope.launch {
+                viewModel.userIntent.send(LoginIntent.IsValidPassword(text.toString()))
+            }
+        }
     }
 
     private fun setUpObserve() {
@@ -53,6 +59,12 @@ class LoginFragment : Fragment() {
                     is LoginState.Error -> {}
                     is LoginState.IsValidEmail -> {
                         with(binding.email) {
+                            error = if (loginState.isValid) "" else "Error"
+                            isErrorEnabled = !loginState.isValid
+                        }
+                    }
+                    is LoginState.IsValidPassword -> {
+                        with(binding.password) {
                             error = if (loginState.isValid) "" else "Error"
                             isErrorEnabled = !loginState.isValid
                         }

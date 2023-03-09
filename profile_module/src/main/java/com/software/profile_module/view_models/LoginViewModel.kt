@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.software.profile_module.views.LoginIntent
 import com.software.profile_module.views.LoginState
 import com.software.profile_module_api.domain.EmailValidatorUseCase
+import com.software.profile_module_api.domain.PasswordValidatorUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val emailValidatorUseCase: EmailValidatorUseCase) :
+class LoginViewModel @Inject constructor(
+    private val emailValidatorUseCase: EmailValidatorUseCase,
+    private val passwordValidatorUseCase: PasswordValidatorUseCase
+) :
     ViewModel() {
     val userIntent = Channel<LoginIntent>(Channel.UNLIMITED)
     private val _loginState = MutableStateFlow<LoginState>(LoginState.Idle)
@@ -29,6 +33,7 @@ class LoginViewModel @Inject constructor(private val emailValidatorUseCase: Emai
             userIntent.consumeAsFlow().collect { loginIntent ->
                 when (loginIntent) {
                     is LoginIntent.IsValidEmail -> isValidEmail(loginIntent.email)
+                    is LoginIntent.IsValidPassword -> isValidPassword(loginIntent.password)
                 }
             }
         }
@@ -39,6 +44,17 @@ class LoginViewModel @Inject constructor(private val emailValidatorUseCase: Emai
             _loginState.value = try {
                 val isValid = emailValidatorUseCase(email)
                 LoginState.IsValidEmail(isValid)
+            } catch (e: Exception) {
+                LoginState.Error(e.message)
+            }
+        }
+    }
+
+    private suspend fun isValidPassword(password: String) {
+        viewModelScope.launch {
+            _loginState.value = try {
+                val isValid = passwordValidatorUseCase(password)
+                LoginState.IsValidPassword(isValid)
             } catch (e: Exception) {
                 LoginState.Error(e.message)
             }
