@@ -49,6 +49,14 @@ class LoginFragment : Fragment() {
                 viewModel.userIntent.send(LoginIntent.IsValidPassword(text.toString()))
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.formIsValid.collect {
+                with(binding.login) {
+                    isEnabled = it
+                }
+            }
+        }
     }
 
     private fun setUpObserve() {
