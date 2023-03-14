@@ -29,16 +29,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildFeatures {
-        viewBinding = true
+        buildConfig = true
+        viewBinding true
     }
     hilt {
         enableAggregatingTask = true
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
     kapt {
         correctErrorTypes true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
@@ -49,13 +50,12 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
-
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     //DI
     implementation "com.google.dagger:hilt-android:2.44"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 

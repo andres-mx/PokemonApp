@@ -16,3 +16,7 @@ rootProject.name = "Pokemon"
 include ':app'
 include ':profile_module'
 include ':profile_module_api'
+include ':home_module_api'
+include ':home_module'
+include ':network_module_api'
+include ':network_module'
