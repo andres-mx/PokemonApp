@@ -1,4 +1,4 @@
-package com.software.home_module.datasource.api
+package com.software.home_module.data.datasource.api
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,10 +1,10 @@
 package com.software.home_module.api.data.datasource.api
 
+import com.software.home_module.data.datasource.api.HomeApiImpl
 import com.software.home_module.data.datasource.api.HomeService
-import com.software.home_module.datasource.api.PokemonResponse
-import com.software.home_module.datasource.api.Result
-import com.software.home_module.datasource.api.HomeApiImpl
-import com.software.home_module_api.data.api.datasource.HomeApi
+import com.software.home_module.data.datasource.api.PokemonResponse
+import com.software.home_module.data.datasource.api.Result
+import com.software.home_module_api.data.datasource.api.HomeApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert

@@ -1,8 +1,8 @@
 package com.software.home_module.di
 
+import com.software.home_module.data.datasource.api.HomeApiImpl
 import com.software.home_module.data.repository.HomeRepositoryImpl
-import com.software.home_module.datasource.api.HomeApiImpl
-import com.software.home_module_api.data.api.datasource.HomeApi
+import com.software.home_module_api.data.datasource.api.HomeApi
 import com.software.home_module_api.data.repository.HomeRepository
 import dagger.Binds
 import dagger.Module

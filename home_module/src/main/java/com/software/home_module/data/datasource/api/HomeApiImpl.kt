@@ -1,7 +1,6 @@
-package com.software.home_module.datasource.api
+package com.software.home_module.data.datasource.api
 
-import com.software.home_module.data.datasource.api.HomeService
-import com.software.home_module_api.data.api.datasource.HomeApi
+import com.software.home_module_api.data.datasource.api.HomeApi
 import com.software.home_module_api.domain.PokemonEntity
 import com.software.home_module_api.domain.PokemonResultEntity
 import javax.inject.Inject
