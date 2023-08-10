@@ -32,7 +32,7 @@ class HomeApiTest {
             val response = homeApi.getPokemon(0, 20)
             //Then
             Assert.assertNotNull(response)
-            Assert.assertEquals(response?.pokemonList?.size, 1)
+            Assert.assertEquals(response?.pokemonList?.size, 2)
         }
 
     @Test
